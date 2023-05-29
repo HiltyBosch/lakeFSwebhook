@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wpxwebhook-deployment
+  labels:
+    app: wpxwebhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wpxwebhook
+  template:
+    metadata:
+      labels:
+        app: wpxwebhook
+    spec:
+      containers:
+      - name: wpxwebhook
+        image: kwkeiiking/wpxwebhook:v1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wpxwebhook-service
+spec:
+  selector:
+    app: wpxwebhook
+  type: ClusterIp
+  ports:
+    - port: 8080
+      targetPort: 8080

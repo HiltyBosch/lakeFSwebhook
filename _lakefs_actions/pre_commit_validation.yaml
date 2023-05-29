@@ -1,0 +1,12 @@
+name: check dataset matedata
+description: load dataset matedata
+on:
+  pre-commit:
+    branches:
+      - main
+hooks:
+  - id: no_temp
+    type: webhook
+    description: checking no temporary files found
+    properties:
+      url: "http://119.8.116.2:9257/webhook/normal?notmp=true&t=1za2PbkZK1bd4prMuTDr6BeEQwWYcX2R"
